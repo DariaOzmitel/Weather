@@ -15,10 +15,7 @@ fun bindLastUpdateText(textView: TextView, lastUpdate: String?) {
         )
     }
     else {
-        textView.text = String.format(
-            textView.context.getString(R.string.lastDataUpdate),
-            ""
-        )
+        textView.text = ""
     }
 }
 
@@ -36,9 +33,6 @@ fun bind(textView: TextView, temp: String?) {
             temp.toFloat().toInt().toString()
         )
     } else {
-        textView.text = String.format(
-            textView.context.getString(R.string.tvTemp),
-            ""
-        )
+        textView.text = ""
     }
 }

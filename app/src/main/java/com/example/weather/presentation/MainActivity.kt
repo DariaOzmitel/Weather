@@ -1,13 +1,17 @@
 package com.example.weather.presentation
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -18,11 +22,12 @@ import com.example.weather.*
 import com.example.weather.databinding.ActivityMainBinding
 import com.example.weather.domain.Weather
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
+import com.yariksoffice.lingver.Lingver
 import org.json.JSONObject
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,9 +54,29 @@ class MainActivity : AppCompatActivity() {
         binding.btRefresh.setOnClickListener {
             getLocation()
         }
+        binding.ibtRu.setOnClickListener {
+            setLanguage("ru")
+        }
+        binding.ibtEn.setOnClickListener {
+            setLanguage("en")
+        }
+    }
+
+    private fun setLanguage(language: String){
+        Lingver.getInstance().setLocale(this,language)
+        recreate()
+    }
+
+    private fun isLocationEnabled() : Boolean {
+        val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
     private fun getLocation() {
+        if (!isLocationEnabled()) {
+            Toast.makeText(this, getString(R.string.locationError), Toast.LENGTH_LONG).show()
+            return
+        }
         val ct = CancellationTokenSource()
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -70,15 +95,15 @@ class MainActivity : AppCompatActivity() {
             if(it.result != null)
                 getWeatherData("${it.result.latitude},${it.result.longitude}")
             else {
-                Toast.makeText(this, "Location not found", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.locationNotFound), Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun getWeatherData(name: String) {
+    private fun getWeatherData(coordinates: String) {
         val url = "https://api.weatherapi.com/v1/current.json" +
                 "?key=$API_KEY" +
-                "&q=$name" +
+                "&q=$coordinates" +
                 "&aqi=no"
         val queue = Volley.newRequestQueue(this)
         val stringRequest = StringRequest(
@@ -135,5 +160,6 @@ class MainActivity : AppCompatActivity() {
     }
     companion object {
         private const val API_KEY = "b0446bc0f616488096c175435230702"
+        private const val API_KEY2 = "ae38e6faecf8d70b5eacffea9169bb37"
     }
 }

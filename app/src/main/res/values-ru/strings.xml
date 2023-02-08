@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Погода</string>
+    <string name="lastDataUpdate">Последнее обновление данных: %s</string>
+    <string name="refresh">Обновить</string>
+    <string name="tvTemp">%s°C</string>
+    <string name="locationWarning">Приложение не может определить ваше местоположение!</string>
+    <string name="locationError">Местоположение выключено!</string>
+    <string name="locationNotFound">Местоположение не найдено!</string>
+</resources>
