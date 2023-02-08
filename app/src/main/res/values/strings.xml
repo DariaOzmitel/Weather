@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="latestDataUpdate">latest data update</string>
+    <string name="lastDataUpdate">latest data update: %s</string>
     <string name="refresh">Refresh</string>
+    <string name="tvTemp">%s°C</string>
+    <string name="locationWarning">"The app can't determine your location</string>
 
 </resources>
