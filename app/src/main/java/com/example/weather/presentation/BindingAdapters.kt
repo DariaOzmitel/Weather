@@ -1,5 +1,6 @@
 package com.example.weather.presentation
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -17,11 +18,6 @@ fun bindLastUpdateText(textView: TextView, lastUpdate: String?) {
     else {
         textView.text = ""
     }
-}
-
-@BindingAdapter("loadImage")
-fun bindLoadImage(imageView: ImageView, imageUrl: String?) {
-    Picasso.get().load("https:$imageUrl").into(imageView)
 }
 
 @BindingAdapter("tempText")

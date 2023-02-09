@@ -6,4 +6,7 @@
     <string name="locationWarning">The app can\'t determine your location!</string>
     <string name="locationError">Location disabled!</string>
     <string name="locationNotFound">Location not found!</string>
+    <string name="server1">api.weatherapi.com</string>
+    <string name="server2">api.openweathermap.org</string>
+    <string name="title_Main">Choose server</string>
 </resources>

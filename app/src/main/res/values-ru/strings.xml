@@ -6,4 +6,7 @@
     <string name="locationWarning">Приложение не может определить ваше местоположение!</string>
     <string name="locationError">Местоположение выключено!</string>
     <string name="locationNotFound">Местоположение не найдено!</string>
+    <string name="server1">api.weatherapi.com</string>
+    <string name="server2">api.openweathermap.org</string>
+    <string name="title_Main">Выбор сервера</string>
 </resources>
