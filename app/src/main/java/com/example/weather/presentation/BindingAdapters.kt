@@ -1,21 +1,17 @@
 package com.example.weather.presentation
 
-import android.util.Log
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.weather.R
-import com.squareup.picasso.Picasso
 
 @BindingAdapter("lastUpdateText")
 fun bindLastUpdateText(textView: TextView, lastUpdate: String?) {
-    if (!lastUpdate.isNullOrEmpty()){
+    if (!lastUpdate.isNullOrEmpty()) {
         textView.text = String.format(
             textView.context.getString(R.string.lastDataUpdate),
             lastUpdate
         )
-    }
-    else {
+    } else {
         textView.text = ""
     }
 }

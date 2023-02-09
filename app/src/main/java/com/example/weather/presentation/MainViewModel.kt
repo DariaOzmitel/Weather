@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weather.domain.Weather
 
-class MainViewModel : ViewModel(){
+class MainViewModel : ViewModel() {
 
     private val _weather = MutableLiveData<Weather>()
     val weather: LiveData<Weather>

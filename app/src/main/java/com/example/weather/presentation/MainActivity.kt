@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.weather.*
+import com.example.weather.R
 import com.example.weather.databinding.ActivityMainBinding
 import com.example.weather.domain.Weather
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -100,7 +100,9 @@ class MainActivity : AppCompatActivity() {
                 val url = getUrl(it.result.latitude.toString(), it.result.longitude.toString())
                 getWeatherData(url)
             } else {
-                Toast.makeText(this, getString(R.string.locationNotFound), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(
+                    R.string.locationNotFound),
+                    Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -215,7 +217,9 @@ class MainActivity : AppCompatActivity() {
             if (it) {
                 getLocation()
             } else {
-                Toast.makeText(this, getString(R.string.locationWarning), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(
+                    R.string.locationWarning),
+                    Toast.LENGTH_LONG).show()
             }
         }
     }
