@@ -1,18 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.weather.presentation.MainViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/weather_bg"
+        tools:context=".presentation.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/ibtEn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:adjustViewBounds="false"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:src="@drawable/flag_of_usa"
+            app:layout_constraintBottom_toTopOf="@+id/btRefresh"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/acme"
+            android:text="@{viewModel.weather.city}"
+            android:textColor="@color/dark_blue"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="City" />
+
+        <TextView
+            android:id="@+id/tvTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/acme"
+            android:textColor="@color/dark_blue"
+            android:textSize="60sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:tempText="@{viewModel.weather.temp}"
+            tools:text="20°C" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="190dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/tvCity"
+            app:layout_constraintStart_toStartOf="@+id/tvCity"
+            app:layout_constraintTop_toBottomOf="@+id/tvCity"
+            app:srcCompat="@drawable/cloudy" />
+
+        <Button
+            android:id="@+id/btRefresh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bt_color"
+            android:fontFamily="@font/acme"
+            android:text="@string/refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ibtRu"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/flag_of_russia"
+            app:layout_constraintBottom_toTopOf="@+id/btRefresh"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLastUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/acme"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            app:lastUpdateText="@{viewModel.weather.lastDataUpdate}"
+            app:layout_constraintEnd_toEndOf="@+id/tvTemp"
+            app:layout_constraintStart_toStartOf="@+id/tvTemp"
+            app:layout_constraintTop_toBottomOf="@+id/tvTemp"
+            tools:text="@string/lastDataUpdate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
